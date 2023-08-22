@@ -1,13 +1,546 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Recruitment Task</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-	<script src="index.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Recruitment Task</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					container: {
+						screens: {
+							sm: '640px',
+							md: '768px',
+							lg: '1024px',
+							xl: '1262px',
+						},
+					},
+				},
+			};
+		</script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+
+		<!-- NAVIGATION -->
+
+		<nav
+			class="navigation flex justify-center py-6 sticky top-0 z-20 bg-white"
+		>
+			<div class="navigation__wrapper container flex justify-between mx-4">
+				<a href="#">
+					<img src="./icons/giarddesign.svg" alt="logo" />
+				</a>
+			</button>
+			<button class="space-y-2 md:hidden" onclick="toggleMenu()">
+				<div class="w-8 h-0.5 bg-gray-600"></div>
+				<div class="w-8 h-0.5 bg-gray-600"></div>
+				<div class="w-8 h-0.5 bg-gray-600"></div>
+			</button>
+				<ul id="menu" class="gap-12 absolute hidden flex-col top-20 right-0 bg-slate-200 items-center px-12 py-4 rounded-lg
+				md:relative md:top-0 md:flex md:bg-transparent md:flex-row md:px-0 md:py-0">
+					<li class="relative">
+						<button
+							onclick="toggleDropdown()"
+							class="offer flex gap-2"
+						>
+							Oferta<img
+								class="offer__arrow"
+								src="./icons/expand.svg"
+								alt="pokaż oferty"
+							/>
+						<ul
+							id="offer-dropdown"
+							class="offer-dropdown absolute top-10 left-0 flex-col bg-white px-6 w-max gap-3 flex hidden"
+						>
+							<li class="mt-6">
+								<a href="#">Oferta 1</a>
+							</li>
+							<li>
+								<a href="#">Oferta 2</a>
+							</li>
+							<li class="mb-6">
+								<a href="#">Oferta 3</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://">O firmie</a>
+					</li>
+					<li>
+						<a href="http://">Realizacje</a>
+					</li>
+					<li>
+						<a href="http://">Kontakt</a>
+					</li>
+					<button id="search" onclick="toggleSearch()">
+						<img
+							src="./icons/search.svg"
+							alt="pokaż wyszukiwarkę"
+						/>
+					</button>
+					<div
+						id="search-input"
+						class="search-input w-0 right-0 overflow-hidden absolute hidden"
+					>
+						<input
+							class="search-input__input w-full bg-white border border-green-800 pr-2 pl-10 py-3 rounded-full"
+							type="text"
+						/>
+					</div>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- MAIN -->
+
+		<main class="main">
+
+			<!-- HERO SECTION -->
+
+			<section id="hero" class="relative">
+				<div class="slide relative">
+					<div class="hero__left justify-center flex py-36">
+						<div class="hero__content lg:container lg:pl-0 pl-4 pr-4 lg:pr-0">
+							<div class="hero__wrapper w-full md:pl-0 pl-4 md:w-1/2 grid pr-4 lg:pr-32 gap-x-9">
+								<h1 class="title mb-12 hero__heading">
+									Nowoczesna aranżacja Twojego ogrodu
+								</h1>
+								<p class="mb-20">
+									Marka GiardDesign to wieloletnie
+									doświadczenie i wysoka estetyka realizacji.
+									Oferujemy kompleksowy zakres usług
+									z&nbsp;indywidualnym podejściem do każdego
+									projektu.
+								</p>
+								<div class="flex xl:flex-row flex-col gap-9">
+									<button
+										class="hover:animate-pulse focus:animate-pulse rounded-full px-6 py-3 background-green text-grey"
+									>
+										Skontaktuj się z nami
+									</button>
+									<button href="#projects"
+										onclick="scrollToProjects()"
+										class="hover:animate-bounce focus:animate-bounce rounded-full px-6 py-3 text-green border border-green flex gap-3 justify-between"
+									>
+										<span>Zobacz nasze realizacje</span
+										><img
+											src="./icons/arrow-down.svg"
+											alt="zobacz realizacje"
+										/>
+										</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="hero__right hero__right--img 
+						h-32 absolute w-full bg-cover right-0 bottom-0 bg-center
+						md:h-full md:bottom-auto md:top-0"
+					></div>
+				</div>
+				<div class="slide relative">
+					<div
+						class="hero__left h-full bg-blue-400 justify-center flex py-36"
+					>
+						<div class="hero__content container">
+							<div class="hero__wrapper w-full md:pl-0 pl-4 md:w-1/2 grid pr-4 lg:pr-32 gap-x-9">
+								<h1 class="title mb-12">slide2</h1>
+								<p class="mb-20">slider</p>
+							</div>
+						</div>
+					</div>
+					<div
+						class="hero__right
+						h-32 absolute w-full bg-cover right-0 bottom-0 bg-red-200
+						md:w-1/2 md:h-full md:bottom-auto md:top-0"
+					></div>
+				</div>
+				<div class="slide relative">
+					<div
+						class="hero__left h-full bg-pink-400 justify-center flex py-36"
+					>
+					<div class="hero__wrapper w-full md:pl-0 pl-4 md:w-1/2 grid pr-4 lg:pr-32 gap-x-9">
+							<div class="hero__wrapper w-1/2 grid pr-32 gap-x-9">
+								<h1 class="title mb-12">slide3</h1>
+								<p class="mb-20">slider</p>
+							</div>
+						</div>
+					</div>
+					<div
+					class="hero__right
+					h-32 absolute w-full bg-cover right-0 bottom-0 bg-green-300
+					md:w-1/2 md:h-full md:bottom-auto md:top-0"
+					></div>
+				</div>
+				<div class="absolute bottom-0 right-0 flex">
+					<button
+						class="md:p-9 p-4 background-grey hover:bg-green-600 focus:bg-green-600 transition ease-in-out duration-300"
+						onclick="plusDivs(-1)"
+					>
+						<img src="./icons/Arrow.svg" alt="poprzedni slajd" />
+					</button>
+					<button
+						class="md:p-9 p-4 background-grey -scale-100 focus:bg-green-600 hover:bg-green-600 transition ease-in-out duration-300"
+						onclick="plusDivs(1)"
+					>
+						<img src="./icons/Arrow.svg" alt="następny slajd" />
+					</button>
+				</div>
+			</section>
+
+			<!--  OFFER SECTION -->
+
+			<section id="offer" class="grid justify-center background-grey pt-28 pb-40">
+				<div
+					class="reveal fade-bottom offer-wrapper container grid grid-cols-12 gap-x-8 lg:gap-x-16 gap-y-24"
+				>
+					<header class="lg:col-start-2 lg:col-span-7 
+									col-start-1 col-span-12	flex flex-col">
+						<span class="text-xs text-green">Oferta</span>
+						<h2 class="title text-5xl mt-4 mb-8">
+							Działamy
+							<span class="inter-italic">kompleksowo</span>
+						</h2>
+						<p class="tracking-tight">
+							Oferujemy kompletną obsługę inwestycji terenów
+							zielonych. Projektujemy nowoczesne ogrody przydomowe
+							oraz rezydencjonalne. Stworzymy dla Ciebie projekt,
+							zwizualizujemy go i wcielimy w&nbsp;życie, a na
+							każdym etapie posłużymy radą i wieloletnim
+							doświadczeniem.
+						</p>
+					</header>
+					<button
+						class="bg-white grid rounded-3xl px-10 py-12 card focus:scale-125 hover:scale-125 duration-300 ease-in-out cursor-pointer
+						col-span-full col-start-1 row-start-2
+						md:col-span-6 md:row-start-2 
+						lg:col-span-4"
+					>
+						<img
+							class=""
+							src="./icons/projects.svg"
+							alt="projekty"
+						/>
+						<div>
+							<h3 class="mb-3 title text-3xl">Projekty</h3>
+							<p class="">
+								Zaprojektujemy Twój ogród w nowoczesnym stylu i
+								z najlepszym wykorzystaniem istniejącej
+								przestrzeni.
+							</p>
+						</div>
+						<a
+							href="#"
+							class="flex gap-2.5 text-green self-end border-green border-b max-w-fit"
+							>Dowiedz się więcej
+							<img
+								src="./icons/arrow-right.svg"
+								alt="dowiedz się więcej"
+						/></a>
+					</button>
+					<button
+						class="bg-white row-start-2 grid rounded-3xl px-10 py-12 card focus:scale-125 hover:scale-125 duration-300 ease-in-out cursor-pointer
+						col-span-full col-start-1 row-start-3
+						md:col-span-6 md:row-start-2
+						lg:col-span-4"
+					>
+						<img
+							class=""
+							src="./icons/visusalisations.svg"
+							alt="Wizualizacje"
+						/>
+						<div>
+							<h3 class="mb-3 title text-3xl">Wizualizacje</h3>
+							<p class="">
+								Przedstawimy Ci projekty koncepcyjne w postaci
+								wirtualnego spaceru animowanego w technologii
+								3D.
+							</p>
+						</div>
+						<a
+							href="#"
+							class="flex gap-2.5 text-green self-end border-green border-b max-w-fit"
+							>Dowiedz się więcej
+							<img
+								src="./icons/arrow-right.svg"
+								alt="dowiedz się więcej"
+						/></a>
+					</button>
+					<button
+						class="bg-white justify-self-center grid rounded-3xl px-10 py-12 card focus:scale-125 hover:scale-125 duration-300 ease-in-out cursor-pointer
+						col-span-full col-start-1 row-start-4
+						md:col-span-6 md:row-start-3 md:col-start-4 
+						lg:col-span-4 lg:row-start-2"
+					>
+						<img
+							class=""
+							src="./icons/implementations.svg"
+							alt="realziacje"
+						/>
+						<div>
+							<h3 class="mb-3 title text-3xl">Realizacje</h3>
+							<p class="">
+								Zrealizujemy Twoje marzenie przy użyciu
+								najnowszych rozwiązań i zaawansowanych
+								technologii.
+							</p>
+						</div>
+						<a
+							href="#"
+							class="flex gap-2.5 text-green self-end border-green border-b max-w-fit"
+							>Zobacz nasze realizacje
+							<img
+								src="./icons/arrow-right.svg"
+								alt="Zobacz nasze realizacje"
+						/></a>
+					</button>
+				</div>
+			</section>
+
+			<!-- ABOUT SECTION-->
+
+			<section id="about" class="relative overflow-hidden">
+				<div
+					class="reveal reveal-absolute fade-left passion__left w-full h-40 absolute md:h-full bg-cover left-0 -bottom-10 md:top-0 bg-center"
+				></div>
+				<div class="reveal reveal-relative fade-right passion__right justify-center flex py-36 text-grey">
+					<div
+						class="passion__content container flex flex-row-reverse"
+					>
+						<div class="passion__wrapper w-full md:w-1/2 grid pl-4 lg:pl-32 gap-x-9">
+							<span class="text-xs mb-6">Oferta</span>
+							<h2 class="title mb-12 text-5xl w-1/2">
+								Tworzymy z&nbsp;<span class="inter-italic"
+									>pasją</span
+								>
+							</h2>
+							<p class="mb-20">
+								Każdy projekt to nowe wyzwanie. Dlatego nasz
+								zespół tworzą wykwalifikowani projektanci oraz
+								architekci, których zadaniem jest rozpoznanie i
+								realizacja potrzeb każdego Klienta. Nasza
+								specjalizacja to przestrzenie nowoczesne, które
+								charakteryzuje minimalizm, geometria i elegancka
+								prostota. Tworzymy ogrody małoobsługowe,
+								dostosowane do współczesnego trybu życia.
+							</p>
+							<div>
+								<button
+									class="hover:scale-110 focus:scale-110 focus:translate-x-8 hover:translate-x-8 duration-300 rounded-full px-6 py-3 text-grey border border-grey flex gap-3"
+								>
+									Poznaj nas bliżej<img
+										class="w-4"
+										src="./icons/arrow-right-grey.svg"
+										alt="Poznaj nas bliżej"
+									/>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- PROJECTS SECTION -->
+
+			<section id="projects" class="reveal fade-left projects flex items-center flex-col relative">
+				<div class="container grid mb-20">
+					<heading>
+						<span class="text-xs text-green">Realizacje</span>
+						<h2 class="title text-5xl mt-4 mb-8">
+							Nasze
+							<span class="inter-italic">projekty</span>
+						</h2>
+					</heading>
+				</div>
+				<div class="w-full justify-center relative" id="photos">
+					<button
+						class="photo photo--vert hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(9)"
+						>
+						<img
+							class="img--vert"
+							src="./images/Photo_8.jpg"
+							alt="ogród"
+						/>
+					</button>
+					<button
+						class="photo hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(8)"
+						>
+						<img src="./images/Photo_7.jpg" alt="ogród"//>
+					</button>
+					<button
+						class="photo hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(7)"
+						>
+						<img src="./images/Photo_6.jpg" alt="ogród"//>
+					</button>
+					<button
+						class="photo hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(6)"
+						>
+						<img src="./images/Photo_5.jpg" alt="ogród"//>
+					</button>
+					<button
+						class="photo photo--vert hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(4)"
+						>
+						<img class="img--vert" src="./images/Photo_3.jpg"
+						alt="ogród"//>
+					</button>
+					<button
+						class="photo hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(5)"
+						>
+						<img src="./images/Photo_4.jpg" alt="ogród"//>
+					</button>
+					<button
+						class="photo photo--vert hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(2)"
+						>
+						<img class="img--vert" src="./images/Photo_1.jpg"
+						alt="ogród"//>
+					</button>
+					<button
+						class="photo hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(3)"
+						>
+						<img src="./images/Photo_2.jpg" alt="ogród"//>
+					</button>
+					<button
+						class="photo hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(1)"
+						>
+						<img src="./images/Photo.jpg" alt="ogród"//>
+					</button>
+					<button
+						class="photo photo-to-hide photo--hidden hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(10)"
+						>
+						<img src="./images/hidden1.jpg" alt="placeholder" />
+					</button>
+					<button
+						class="photo photo-to-hide photo--hidden hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(11)"
+						>
+						<img src="./images/hidden2.jpg" alt="placeholder" />
+					</button>
+					<button
+						class="photo photo-to-hide photo--hidden hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(12)"
+						>
+						<img src="./images/hidden3.jpg" alt="placeholder" />
+					</button>
+					<button
+						class="photo photo-to-hide photo--hidden hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(13)"
+						>
+						<img src="./images/hidden4.jpg" alt="placeholder" />
+					</button>
+					<button
+						class="photo photo-to-hide photo--hidden hover:outline-green-600 focus:outline-green-600 focus:outline focus:scale-105 hover:outline outline-2 hover:scale-105 duration-300"
+						onclick="openModal();currentSlide(14)"
+						>
+						<img src="./images/hidden5.jpg" alt="placeholder" />
+					</button>
+					<div class="gradient"></div>
+				</div>
+				<button
+					onclick="togglePhotos()"
+					class="absolute flex gap-3 bottom-10 left-1/2 z-10 border border-black rounded-full px-6 py-3 -translate-x-1/2 focus:scale-125 hover:scale-125 duration-300 ease-in-out"
+				>
+					<span id="masonry-button-text">Rozwiń</span>
+					<img
+						id="masonry-button-arrow"
+						src="./icons/arrow-down-black.svg"
+						alt="rozwiń"
+					/>
+				</button>
+			</section>
+
+			<!-- CONTACT SECTION -->
+
+			<section id="contact" class="grid justify-center py-16">
+				<div class="reveal fade-bottom grid grid-cols-12 container">
+					<div
+					class="col-start-1 text-center sm:text-left col-span-full background-green sm:p-20 p-6 grid grid-cols-8 text-grey 
+						xl:col-start-2 xl:col-span-10 xl:p-28
+						"
+					>
+						<p
+							class="title sm:col-span-6 col-span-8 text-4xl font-normal self-end tracking-tight"
+						>
+							Zostańmy w kontakcie!<br />Znajdziesz nas na
+							<span class="inter-italic">Instagramie</span>.
+						</p>
+						<div class="sm:col-span-2 col-span-8 sm:mt-0 mt-6 flex flex-col gap-6 items-center">
+							<p class="w-10/12">
+								Śledź nasze najnowsze realizacje!
+							</p>
+							<button
+								class="hover:animate-pulse focus:animate-pulse text-green background-grey px-6 py-3 rounded-full w-min"
+							>
+								Instagram
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</main>
+
+		<!-- FOOTER -->
+		
+		<footer class="bg-black py-20 flex justify-center text-grey">
+			<div class="grid grid-cols-12 container">
+				<div
+					class="footer__content col-start-1 col-span-12 lg:col-start-2 lg:col-span-10 grid items-center"
+				>
+					<img
+						src="./icons/giarddesign-grey.svg"
+						alt="logo"
+						class="svg-grey"
+					/>
+					<div class="flex mt-4 sm:mt-0 flex-col sm:flex-row gap-6 xl:col-span-1 md:col-span-2 col-span-3 justify-self-center md:justify-self-end items-center">
+						<p>Daj znać, co możemy dla Ciebie zrobić!</p>
+						<button class="hover:animate-pulse focus:animate-pulse py-3 px-6 background-green rounded-full">
+							Skontaktuj się z nami
+						</button>
+					</div>
+					<div
+						class="border-grey border-b col-span-3 xl:col-span-2 mt-14 mb-14"
+					></div>
+					<ul class="justify-self-center md:justify-self-start text-sm flex gap-12 xl:col-span-1 col-span-3 md:col-span-2">
+						<li><a class="hover:underline focus:underline" href="#">Kontakt</a></li>
+						<li><a class="hover:underline focus:underline" href="#">Instagram</a></li>
+						<li><a class="hover:underline focus:underline" href="#">Facebook</a></li>
+						<li><a class="hover:underline focus:underline"	 href="#">Linkedin</a></li>
+					</ul>
+					<div class="justify-self-center md:justify-self-end flex gap-12 text-sm mt-4 md:mt-0 col-span-3 md:col-span-1">
+						<p>000-000-000</p>
+						<p>giarddesign@kontakt.pl</p>
+					</div>
+					<p class="mt-32 xl:col-span-1 col-span-2">Prawa zastrzeżone © 2022</p>
+					<div class="mt-32 flex gap-4 justify-self-end">
+						<p>made by</p>
+						<img
+							src="./icons/logo-full-light.svg"
+							alt="adrespect logo"
+						/>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="index.js"></script>
+	</body>
 </html>
